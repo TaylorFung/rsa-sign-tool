@@ -7,7 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 查找OpenSSL库
 find_package(OpenSSL REQUIRED)
-
+find_package(PkgConfig REQUIRED)
+   pkg_search_module(OPENSSL REQUIRED openssl)
+   include_directories(${OPENSSL_INCLUDE_DIRS})
+   target_link_libraries(rsa_sign_tool ${OPENSSL_LIBRARIES})
 # 包含头文件目录
 include_directories(include)
 
